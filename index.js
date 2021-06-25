@@ -35,10 +35,12 @@ const uri = ` mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluste
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     const blogCollection = client.db(`${process.env.DB_NAME}`).collection("blogs");
+    const adminCollection = client.db(`${process.env.DB_NAME}`).collection("admins");
 
 
     app.post('/addBlogs', (req, res) => {
         const blogData = req.body;
+
         console.log(blogData);
         blogCollection.insertOne(blogData)
             .then(result => {
@@ -46,6 +48,27 @@ client.connect(err => {
                 console.log(result.insertedCount)
             })
     })
+
+    app.post('/allBlogs', (req, res) => {
+        const blogData = req.body;
+        const email = req.body.email
+        console.log(blogData);
+        adminCollection.find({ email: email.email })
+            .toArray(err, admin => {
+                const filter = { email: email.email }
+                if (admin.length === 0) {
+                    filter.email = email;
+                }
+
+                blogCollection.find(filter)
+                    .toArray(err, documents => {
+                        res.send(documents);
+                    })
+            })
+
+    })
+
+
 
 
     app.get('/allBlogs', (req, res) => {
