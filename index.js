@@ -80,8 +80,8 @@ client.connect(err => {
 
 
     app.get('/isAdmin', (req, res) => {
-        const email = req.body.email;
-        adminCollection.find({ email: email })
+        // const email = req.body.email;
+        adminCollection.find({})
             .toArray((error, documents) => {
                 res.send(documents)
             })
