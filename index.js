@@ -80,12 +80,11 @@ client.connect(err => {
 
 
     app.get('/isAdmin', (req, res) => {
-        const email = req.body.email
-        adminCollection.find({ email: email })
-            .toArray(err, documents => {
-                res.send(documents);
+        //   const email = req.body.email;
+        adminCollection.find()
+            .toArray((error, document) => {
+                res.send(document)
             })
-
     })
 
     app.delete('/deleteBlogs/:id', (req, res) => {
