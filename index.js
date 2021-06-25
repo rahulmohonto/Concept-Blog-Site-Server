@@ -49,6 +49,16 @@ client.connect(err => {
             })
     })
 
+
+    app.get('/allBlogs', (req, res) => {
+        blogCollection.find({})
+            .toArray((err, documents) => {
+                res.send(documents);
+            })
+    })
+
+
+
     app.post('/allBlogs', (req, res) => {
         const blogData = req.body;
         const email = req.body.email
@@ -69,28 +79,14 @@ client.connect(err => {
     })
 
 
-    app.post('/isAdmin', (req, res) => {
-        const blogData = req.body;
+    app.get('/isAdmin', (req, res) => {
         const email = req.body.email
-        console.log(blogData);
         adminCollection.find({ email: email })
-            .toArray(err, admin => {
-
-            })
-
-    })
-
-
-
-
-
-    app.get('/allBlogs', (req, res) => {
-        blogCollection.find({})
-            .toArray((err, documents) => {
+            .toArray(err, documents => {
                 res.send(documents);
             })
-    })
 
+    })
 
     app.delete('/deleteBlogs/:id', (req, res) => {
         const id = ObjectId(req.params.id);
