@@ -53,9 +53,9 @@ client.connect(err => {
         const blogData = req.body;
         const email = req.body.email
         console.log(blogData);
-        adminCollection.find({ email: email.email })
+        adminCollection.find({ email: email })
             .toArray(err, admin => {
-                const filter = { email: email.email }
+                const filter = { email: email }
                 if (admin.length === 0) {
                     filter.email = email;
                 }
@@ -67,6 +67,19 @@ client.connect(err => {
             })
 
     })
+
+
+    app.post('/isAdmin', (req, res) => {
+        const blogData = req.body;
+        const email = req.body.email
+        console.log(blogData);
+        adminCollection.find({ email: email })
+            .toArray(err, admin => {
+
+            })
+
+    })
+
 
 
 
