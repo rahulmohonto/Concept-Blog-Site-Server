@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.9.0",
+    "mongodb": "^3.6.9",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start:dev": "nodemon index",
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "name": "blog-website-server",
+  "version": "1.0.0",
+  "description": "contains published blog, firebase account created with 1996 email.",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "Rahul Mohonta",
+  "license": "ISC"
+}
