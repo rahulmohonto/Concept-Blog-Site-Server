@@ -50,6 +50,21 @@ client.connect(err => {
     })
 
 
+    app.post('/addAdmins', (req, res) => {
+        const Admin = req.body;
+
+        console.log(Admin);
+        adminCollection.insertMany(Admin)
+            .then(result => {
+                res.send(result.insertedCount > 0)
+                console.log(result.insertedCount)
+            })
+    })
+
+
+
+
+
     app.get('/allBlogs', (req, res) => {
         blogCollection.find({})
             .toArray((err, documents) => {
