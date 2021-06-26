@@ -96,7 +96,8 @@ client.connect(err => {
 
     app.get('/isAdmin', (req, res) => {
         const email = req.body.email;
-        adminCollection.find({ email: email })
+        const name = req.body.name
+        adminCollection.find({ email: email, name: name })
             .toArray((error, documents) => {
                 res.send(documents)
             })
